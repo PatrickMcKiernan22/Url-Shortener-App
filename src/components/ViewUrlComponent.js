@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import axios from "axios"
 import EntryList from "./EntryList";
+import '../App.css';
+import './Design.css';
 
 const ViewAllUrls = () =>{
     const[allUrls, setAllUrls] = useState([]);
@@ -20,14 +22,12 @@ const ViewAllUrls = () =>{
 
     return(
         <div className="viewAllEntries">
-            <div className="header">
-                <h2>Displaying All Urls Entered</h2>
+                <h2 className="h2">Display All Urls</h2>
                 <div className="DisplayAll">
-                    <button onClick={handleViewAllUrls}>
+                    <button className="display" onClick={handleViewAllUrls}>
                         View All Urls
                     </button>
                 </div>
-            </div>
             <div className="content">
                 <EntryList entries={allUrls}/>
             </div>

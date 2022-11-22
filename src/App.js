@@ -6,8 +6,12 @@ import ViewAllUrls from './components/ViewUrlComponent';
 function App() {
   return (
     <div className="App">
+      <div className='AddUrl'>
       <AddUrl/>
+      </div>
+      <div className='ViewUrl'>
       <ViewAllUrls/>
+      </div>
     </div>
   );
 }

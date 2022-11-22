@@ -1,4 +1,7 @@
 import axios from "axios";
+import './Design.css';
+// import '../App.css';
+// import {createUseStyles} from 'react-jss';
 
 const EntryList = (props) => {
     console.log(props);
@@ -16,23 +19,17 @@ const EntryList = (props) => {
 return(
     <div className="entry-list">
         {props.entries.map((entry) => (
-            <div className="entry-preview" key={entry.id}>
-                <p>
+            <div className="entrypreview" key={entry.id}>
                     <b>Long Url</b> <div className="entryValue"> {entry.longUrl}</div>
-                </p>
-                <p>
                     <b>Short Url</b> <div className="entryValue"><a href={entry.longUrl}>http://localhost:8040/url/{entry.shortUrl}</a></div>
-                </p>
-                <p>
                     <b>Created</b>
-                    <div className="entryValue">{entry.createdAt}</div>
-                </p>
-                <div className="indivdualButtons">
-                    <button className="deleteAllUrlsButton"
-                    onClick={(e) => deleteAllUrls(e)}>Delete All</button>
-                </div>
+                    <div className="entryValue">{entry.createdOn}</div>
             </div>
         ))}
+        <div className="button">
+             <button className="deleteAllUrlsButton"
+        onClick={(e) => deleteAllUrls(e)}>Clear History</button>
+        </div>
     </div>
     );
 };
