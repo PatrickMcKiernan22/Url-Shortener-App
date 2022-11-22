@@ -17,15 +17,6 @@ const AddUrl = () => {
             .then((response) => response.text())
             .then((text) => setShortUrl(text));
     };
-    // let link = document.getElementsByClassName("link").innerHTML;
-    // console.log(link);
-    const copyLink = async () =>{
-       var copy = document.getElementById("text").value;
-       navigator.clipboard.writeText(copy).then(() => {
-        console.log(copy);
-        alert("Copied");
-       });
-    }
 
     function copyElementText(id) {
 
