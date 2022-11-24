@@ -1,7 +1,13 @@
 import axios from "axios";
 import './Design.css';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { Stack } from "@mui/system";
+import {Divider, Typography } from "@mui/material";
+import {Link} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 // import '../App.css';
-// import {createUseStyles} from 'react-jss';
+
 
 const EntryList = (props) => {
     console.log(props);
@@ -14,23 +20,50 @@ const EntryList = (props) => {
             .catch((error) => {
                 console.log(error);
             });
+            window.location.reload();
     };
 
 return(
-    <div className="entry-list">
+    <Box paddingTop sx={{
+        alignItems: 'center',
+        margin: 'auto',
+        width: 500,
+        height: 250,
+    }}>
         {props.entries.map((entry) => (
-            <div className="entrypreview" key={entry.id}>
-                    <b>Long Url</b> <div className="entryValue"> {entry.longUrl}</div>
-                    <b>Short Url</b> <div className="entryValue"><a href={entry.longUrl}>http://localhost:8040/url/{entry.shortUrl}</a></div>
-                    <b>Created</b>
-                    <div className="entryValue">{entry.createdOn}</div>
-            </div>
+            <Stack paddingBottom direction={'column'} spacing={.75} sx={{
+                width: 500,
+                wordWrap: 'break-word',
+                borderRadius: 'black',
+                alignItems: 'center',
+                backgroundColor: '#fffffe',
+                color:'#2b2c34',
+                margin: 'auto'
+            }} key={entry.id}>
+                <Typography variant="h6" sx={{ fontWeight: 'bold'}}>
+                        Long Url <br/>
+                </Typography>
+                <Typography sx={{ width: 450, wordWrap:'break-word'}}> 
+                {entry.longUrl}
+                </Typography>
+                 <Typography variant="h6" sx={{ fontWeight: 'bold'}} >
+                    Short Url
+                </Typography> 
+                <Typography> 
+                    <Link href={entry.longUrl}>
+                        http://localhost:8040/url/{entry.shortUrl}
+                    </Link>
+                </Typography>
+                <Typography variant="h6" sx={{ fontWeight: 'bold'}}>
+                    Created
+                </Typography>
+                <Typography>{entry.createdOn}</Typography>
+              <Divider orientation='horizontal' color='#2b2c34' flexItem/>
+            </Stack>
         ))}
-        <div className="button">
-             <button className="deleteAllUrlsButton"
-        onClick={(e) => deleteAllUrls(e)}>Clear History</button>
-        </div>
-    </div>
+             <Button style={{backgroundColor: '#078080'}} variant="contained" startIcon={<DeleteIcon/>} 
+        onClick={(e) => deleteAllUrls(e)}>Delete All</Button>
+    </Box>
     );
 };
 

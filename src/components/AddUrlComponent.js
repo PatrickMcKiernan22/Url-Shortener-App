@@ -1,5 +1,19 @@
 import React, { useState } from 'react'
 import './Design.css';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import {Divider, Typography} from "@mui/material";
+import  TextField  from '@mui/material/textfield';
+import { Stack } from '@mui/system';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ClearIcon from '@mui/icons-material/Clear';
+
+
+const styles = {
+    stackCenter: {
+        justifyContent: 'center'
+    }
+}
 
 const AddUrl = () => {
     const [longUrl, setLongUrl] = useState("");
@@ -36,37 +50,49 @@ const AddUrl = () => {
     
     }
 
-
-
-
+    const clearInput = () => {
+        var getValue = document.getElementById("input");
+        if(getValue.value !== ""){
+            getValue.value = "";
+        }
+    }
 
 return(
-<div className='form'>
-    <container >
-        <main>
-            <section className='w-100 d-flex flex-column justify-content-center align-items-center'>
-                <h1 className='title'>URL Shortener</h1>
-                <form className='w-50' onSubmit={onSubmit}>
-                    <input
-                        className='w-100 border border-primary p-2 mb-2 fs-3 h-25'
-                        type="url"
-                        required
-                        placeholder="Enter Url Here"
-                        value={longUrl}
-                        onChange={(e) => setLongUrl(e.target.value)}
-                    />
-                    <div class="submitButton">
-                        <button type="submit" className="addbutton">
-                            Shorten Url
-                        </button>
-                    </div>
-                </form>
-                <p type="text" id="url" className='link'>http://localhost:8040/url/{shortUrl}</p>
-                <button className='addbutton' onClick={(e) => copyElementText("url")}>Copy<i class="fa fa-copy"></i></button>
-            </section>
+
+    <main>
+        <Box sx={{
+        alignItems: 'center',
+        justifyContent: 'center'
+}} >
+ <form  onSubmit={onSubmit}>
+    <Stack direction={'column'}>
+        <Typography variant="h2">URL Shortener</Typography>
+            <TextField sx={{
+                width: 500,
+                backgroundColor: 'white',
+                margin: 'auto'
+            }}
+                id="input"
+                label="URL"
+                type="url"
+                required
+                placeholder="Enter Url Here"
+                value={longUrl}
+                onChange={(e) => setLongUrl(e.target.value)}
+        />
+    </Stack>
+    <Stack sx={styles.stackCenter} paddingTop paddingBottom direction={'row'} spacing={2} divider={<Divider orientation='vertical' flexItem/>}>
+        <Button style={{backgroundColor: '#078080'}} className='button' variant='contained' startIcon={<ClearIcon/>} onClick={clearInput}> Clear</Button>
+        <Button style={{backgroundColor: '#078080'}} className='button' variant='contained' type="submit" size='large'>
+            Shorten Url
+        </Button>
+    </Stack>
+</form>
+                <Typography paddingBottom type="text" id="url">http://localhost:8040/url/{shortUrl}</Typography>
+                <Button style={{backgroundColor: '#078080'}} className='copyButton' variant='contained' startIcon={<ContentCopyIcon/>} onClick={(e) => copyElementText("url")}>Copy Short Url</Button>
+                </Box>
         </main>
-    </container>
-</div>
+
 );
 
 };
