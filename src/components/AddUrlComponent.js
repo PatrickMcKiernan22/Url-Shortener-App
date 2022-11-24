@@ -3,7 +3,7 @@ import './Design.css';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import {Divider, Typography} from "@mui/material";
-import  TextField  from '@mui/material/textfield';
+import TextField  from '@mui/material/textfield';
 import { Stack } from '@mui/system';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -51,15 +51,10 @@ const AddUrl = () => {
     }
 
     const clearInput = () => {
-        var getValue = document.getElementById("input");
-        if(getValue.value !== ""){
-            getValue.value = "";
-        }
+        setLongUrl("");
     }
 
 return(
-
-    <main>
         <Box sx={{
         alignItems: 'center',
         justifyContent: 'center'
@@ -72,7 +67,6 @@ return(
                 backgroundColor: 'white',
                 margin: 'auto'
             }}
-                id="input"
                 label="URL"
                 type="url"
                 required
@@ -82,7 +76,7 @@ return(
         />
     </Stack>
     <Stack sx={styles.stackCenter} paddingTop paddingBottom direction={'row'} spacing={2} divider={<Divider orientation='vertical' flexItem/>}>
-        <Button style={{backgroundColor: '#078080'}} className='button' variant='contained' startIcon={<ClearIcon/>} onClick={clearInput}> Clear</Button>
+        <Button style={{backgroundColor: '#078080'}} className='button' variant='contained' startIcon={<ClearIcon/>} onClick={clearInput}>Clear</Button>
         <Button style={{backgroundColor: '#078080'}} className='button' variant='contained' type="submit" size='large'>
             Shorten Url
         </Button>
@@ -91,7 +85,6 @@ return(
                 <Typography paddingBottom type="text" id="url">http://localhost:8040/url/{shortUrl}</Typography>
                 <Button style={{backgroundColor: '#078080'}} className='copyButton' variant='contained' startIcon={<ContentCopyIcon/>} onClick={(e) => copyElementText("url")}>Copy Short Url</Button>
                 </Box>
-        </main>
 
 );
 
